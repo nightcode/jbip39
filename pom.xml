@@ -18,7 +18,7 @@
   <groupId>org.nightcode</groupId>
   <artifactId>jbip39</artifactId>
   <packaging>jar</packaging>
-  <version>0.1</version>
+  <version>0.2-SNAPSHOT</version>
 
   <name>JBIP-39</name>
   <description>Java implementation of the BIP-39 specification.</description>

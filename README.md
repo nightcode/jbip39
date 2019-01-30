@@ -28,6 +28,17 @@ _Convert a mnemonic to a seed_
   byte[] seed = bip39.createSeed(mnemonic, passphrase);
 ```
 
+Download
+--------
+
+Download [the latest jar][1] via Maven:
+```xml
+<dependency>
+  <groupId>org.nightcode</groupId>
+  <artifactId>jbip39</artifactId>
+  <version>0.1</version>
+</dependency>
+```
 
 Credits
 -------

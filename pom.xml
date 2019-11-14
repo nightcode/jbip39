@@ -18,7 +18,7 @@
   <groupId>org.nightcode</groupId>
   <artifactId>jbip39</artifactId>
   <packaging>jar</packaging>
-  <version>0.2-SNAPSHOT</version>
+  <version>0.1.1-SNAPSHOT</version>
 
   <name>JBIP-39</name>
   <description>Java implementation of the BIP-39 specification.</description>
@@ -30,7 +30,6 @@
 
     <java.version>1.8</java.version>
     <jsr305.version>3.0.0</jsr305.version>
-    <yaranga.version>0.5.5</yaranga.version>
 
     <junit.version>4.12</junit.version>
     <easymock.version>3.6</easymock.version>
@@ -143,63 +142,30 @@
       <email>dmitry@nightcode.org</email>
     </developer>
   </developers>
-  
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.nightcode.yaranga</groupId>
-        <artifactId>yaranga</artifactId>
-        <version>${yaranga.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.google.code.findbugs</groupId>
-        <artifactId>jsr305</artifactId>
-        <version>${jsr305.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>${junit.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.easymock</groupId>
-        <artifactId>easymock</artifactId>
-        <version>${easymock.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.google.code.gson</groupId>
-        <artifactId>gson</artifactId>
-        <version>2.8.5</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 
   <dependencies>
     <dependency>
-      <groupId>org.nightcode.yaranga</groupId>
-      <artifactId>yaranga</artifactId>
-    </dependency>
-
-    <dependency>
       <groupId>com.google.code.findbugs</groupId>
       <artifactId>jsr305</artifactId>
+      <version>${jsr305.version}</version>
     </dependency>
 
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.easymock</groupId>
       <artifactId>easymock</artifactId>
+      <version>${easymock.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
+      <version>2.8.5</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

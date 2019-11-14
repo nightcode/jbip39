@@ -14,32 +14,39 @@
 
 package org.nightcode.bip39;
 
-import org.nightcode.common.base.Hexs;
-
 import org.junit.Assert;
 import org.junit.Test;
 
 public class BitArrayTest {
 
-  private static final Hexs HEX = Hexs.hex();
+  private static byte[] toByteArray(String hexString) {
+    int length = hexString.length();
+    byte[] result = new byte[length >> 1];
+    for(int i = 0; i < length; i += 2) {
+      int hn = Character.digit(hexString.charAt(i), 16);
+      int ln = Character.digit(hexString.charAt(i + 1), 16);
+      result[i >> 1] = (byte)(hn << 4 | ln);
+    }
+    return result;
+  }
 
   @Test public void testNewInstance() {
-    check(HEX.toByteArray("01"));
-    check(HEX.toByteArray("0102"));
-    check(HEX.toByteArray("010203"));
-    check(HEX.toByteArray("01020304"));
-    check(HEX.toByteArray("0102030401"));
-    check(HEX.toByteArray("010203040102"));
-    check(HEX.toByteArray("01020304010203"));
-    check(HEX.toByteArray("0102030401020304"));
-    check(HEX.toByteArray("010203040102030401"));
-    check(HEX.toByteArray("01020304010203040102"));
-    check(HEX.toByteArray("0102030401020304010203"));
-    check(HEX.toByteArray("123456781234567812345678"));
+    check(toByteArray("01"));
+    check(toByteArray("0102"));
+    check(toByteArray("010203"));
+    check(toByteArray("01020304"));
+    check(toByteArray("0102030401"));
+    check(toByteArray("010203040102"));
+    check(toByteArray("01020304010203"));
+    check(toByteArray("0102030401020304"));
+    check(toByteArray("010203040102030401"));
+    check(toByteArray("01020304010203040102"));
+    check(toByteArray("0102030401020304010203"));
+    check(toByteArray("123456781234567812345678"));
   }
 
   @Test public void testShiftLeft() {
-    byte[] array = HEX.toByteArray("0102030401");
+    byte[] array = toByteArray("0102030401");
     BitArray bitArray = new BitArray(array);
 
     checkShiftLeft(0, bitArray, "0102030401");
@@ -59,7 +66,7 @@ public class BitArrayTest {
   }
 
   @Test public void testShiftRight() {
-    byte[] array = HEX.toByteArray("020406080200");
+    byte[] array = toByteArray("020406080200");
     BitArray bitArray = new BitArray(array);
 
     checkShiftRight(0, bitArray, "020406080200");
@@ -81,15 +88,15 @@ public class BitArrayTest {
   @Test public void testIntValue() {
     BitArray bitArray;
 
-    bitArray = new BitArray(HEX.toByteArray("7FFFFFFF"));
+    bitArray = new BitArray(toByteArray("7FFFFFFF"));
 
     Assert.assertEquals(Integer.MAX_VALUE, bitArray.intValue(0, 31));
     Assert.assertEquals(2047, bitArray.intValue(20, 11));
 
-    bitArray = new BitArray(HEX.toByteArray("7FFF"));
+    bitArray = new BitArray(toByteArray("7FFF"));
     Assert.assertEquals(2047, bitArray.intValue(2, 11));
 
-    bitArray = new BitArray(HEX.toByteArray("B6DB6DB6DB6DB6DB"));
+    bitArray = new BitArray(toByteArray("B6DB6DB6DB6DB6DB"));
     for (int i = 0; i < 64 - 11; i++) {
       Assert.assertEquals(1462, bitArray.intValue(i++, 11));
       Assert.assertEquals(877, bitArray.intValue(i++, 11));
@@ -105,11 +112,11 @@ public class BitArrayTest {
 
   private void checkShiftLeft(int shift, BitArray bitArray, String expected) {
     BitArray target = bitArray.shiftLeft(shift);
-    Assert.assertArrayEquals(HEX.toByteArray(expected), target.toByteArray());
+    Assert.assertArrayEquals(toByteArray(expected), target.toByteArray());
   }
 
   private void checkShiftRight(int shift, BitArray bitArray, String expected) {
     BitArray target = bitArray.shiftRight(shift);
-    Assert.assertArrayEquals(HEX.toByteArray(expected), target.toByteArray());
+    Assert.assertArrayEquals(toByteArray(expected), target.toByteArray());
   }
 }

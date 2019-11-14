@@ -16,7 +16,6 @@ package org.nightcode.bip39;
 
 import org.nightcode.bip39.dictionary.EnglishDictionary;
 import org.nightcode.bip39.dictionary.JapaneseDictionary;
-import org.nightcode.common.base.Hexs;
 
 import com.google.gson.Gson;
 
@@ -32,7 +31,28 @@ import org.junit.Test;
 
 public class Bip39Test {
 
-  private static final Hexs HEX = Hexs.hex().lowerCase();
+  private static final char[] HEX_DIGITS = "0123456789abcdef".toCharArray();
+
+  private static byte[] toByteArray(String hexString) {
+    int length = hexString.length();
+    byte[] result = new byte[length >> 1];
+    for(int i = 0; i < length; i += 2) {
+      int hn = Character.digit(hexString.charAt(i), 16);
+      int ln = Character.digit(hexString.charAt(i + 1), 16);
+      result[i >> 1] = (byte)(hn << 4 | ln);
+    }
+    return result;
+  }
+
+  private static String fromByteArray(byte[] bytes) {
+    int capacity = bytes.length << 1;
+    StringBuilder builder = new StringBuilder(capacity);
+    for (byte b : bytes) {
+      builder.append(HEX_DIGITS[(b & 0xF0) >> 4]);
+      builder.append(HEX_DIGITS[b & 0x0F]);
+    }
+    return builder.toString();
+  }
 
   private static final Path EN_VECTORS = Paths.get("test-resources/vectors_en_BIP39.json");
   private static final Path JP_VECTORS = Paths.get("test-resources/vectors_jp_BIP39.json");
@@ -44,7 +64,7 @@ public class Bip39Test {
 
     Bip39 bip39 = new Bip39(EnglishDictionary.instance());
     for (TestVector vector : vectors) {
-      String mnemonic = bip39.createMnemonic(HEX.toByteArray(vector.getEntropy()));
+      String mnemonic = bip39.createMnemonic(toByteArray(vector.getEntropy()));
       Assert.assertEquals(vector.getMnemonic(), mnemonic);
     }
   }
@@ -54,7 +74,7 @@ public class Bip39Test {
 
     Bip39 bip39 = new Bip39(JapaneseDictionary.instance());
     for (TestVector vector : vectors) {
-      String mnemonic = bip39.createMnemonic(HEX.toByteArray(vector.getEntropy()));
+      String mnemonic = bip39.createMnemonic(toByteArray(vector.getEntropy()));
       Assert.assertEquals(Normalizer.normalize(vector.getMnemonic(), Normalizer.Form.NFKD), mnemonic);
     }
   }
@@ -65,7 +85,7 @@ public class Bip39Test {
     Bip39 bip39 = new Bip39(EnglishDictionary.instance());
     for (TestVector vector : vectors) {
       byte[] seed = bip39.createSeed(vector.getMnemonic(), vector.getPassphrase());
-      Assert.assertEquals(vector.getSeed(), HEX.fromByteArray(seed).toLowerCase());
+      Assert.assertEquals(vector.getSeed(), fromByteArray(seed));
     }
   }
 
@@ -75,7 +95,7 @@ public class Bip39Test {
     Bip39 bip39 = new Bip39(JapaneseDictionary.instance());
     for (TestVector vector : vectors) {
       byte[] seed = bip39.createSeed(vector.getMnemonic(), vector.getPassphrase());
-      Assert.assertEquals(vector.getSeed(), HEX.fromByteArray(seed).toLowerCase());
+      Assert.assertEquals(vector.getSeed(), fromByteArray(seed));
     }
   }
 
@@ -85,7 +105,7 @@ public class Bip39Test {
     Bip39 bip39 = new Bip39(EnglishDictionary.instance());
     for (TestVector vector : vectors) {
       byte[] entropy = bip39.mnemonicToEntropy(vector.getMnemonic());
-      Assert.assertEquals(vector.getEntropy(), HEX.fromByteArray(entropy));
+      Assert.assertEquals(vector.getEntropy(), fromByteArray(entropy));
     }
   }
 
@@ -95,7 +115,7 @@ public class Bip39Test {
     Bip39 bip39 = new Bip39(JapaneseDictionary.instance());
     for (TestVector vector : vectors) {
       byte[] entropy = bip39.mnemonicToEntropy(vector.getMnemonic());
-      Assert.assertEquals(vector.getEntropy(), HEX.fromByteArray(entropy));
+      Assert.assertEquals(vector.getEntropy(), fromByteArray(entropy));
     }
   }
 

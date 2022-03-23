@@ -42,7 +42,7 @@ Download [the latest jar][1] via Maven:
 
 Credits
 -------
-Wordlists are from the [BIP 0039]([2]).
+Wordlists are from the [BIP 0039][2].
 
 
 

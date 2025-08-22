@@ -1,7 +1,8 @@
 # JBIP 39
 
-[![Build Status](https://travis-ci.org/nightcode/jbip39.svg?branch=master)](https://travis-ci.org/nightcode/jbip39)
-[![Maven Central](https://img.shields.io/maven-central/v/org.nightcode/jbip39.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3Aorg.nightcode%20AND%20a%3Ajbip39)
+[![Build Status](https://github.com/nightcode/jbip39/actions/workflows/maven.yml/badge.svg)](https://github.com/nightcode/jbip39/actions/workflows/maven.yml)
+[![GitHub license](https://img.shields.io/github/license/nightcode/jbip39.svg)](https://github.com/nightcode/jbip39/blob/master/LICENSE)
+[![Maven Central](https://img.shields.io/maven-central/v/org.nightcode.crypto/jbip39.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3Aorg.nightcode.crypto%20a%3Ajbip39)
 
 Java implementation of the BIP 39 specification.
 
@@ -34,9 +35,9 @@ Download
 Download [the latest jar][1] via Maven:
 ```xml
 <dependency>
-  <groupId>org.nightcode</groupId>
+  <groupId>org.nightcode.crypto</groupId>
   <artifactId>jbip39</artifactId>
-  <version>0.1.1</version>
+  <version>0.2</version>
 </dependency>
 ```
 
@@ -44,11 +45,8 @@ Credits
 -------
 Wordlists are from the [BIP 0039][2].
 
-
-
 Feedback is welcome. Please don't hesitate to open up a new [github issue][3] or simply drop me a line at <dmitry@nightcode.org>.
 
-
- [1]: http://oss.sonatype.org/service/local/artifact/maven/redirect?r=releases&g=org.nightcode&a=jbip39&v=LATEST
+ [1]: http://oss.sonatype.org/service/local/artifact/maven/redirect?r=releases&g=org.nightcode.crypto&a=jbip39&v=LATEST
  [2]: https://github.com/bitcoin/bips/tree/master/bip-0039
  [3]: https://github.com/nightcode/jbip39/issues

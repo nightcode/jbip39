@@ -37,7 +37,7 @@ Download [the latest jar][1] via Maven:
 <dependency>
   <groupId>org.nightcode.crypto</groupId>
   <artifactId>jbip39</artifactId>
-  <version>0.2</version>
+  <version>0.2.1</version>
 </dependency>
 ```
 

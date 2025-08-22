@@ -12,7 +12,7 @@
  * the License.
  */
 
-package org.nightcode.bip39;
+package org.nightcode.crypto.bip39;
 
 public class Bip39Exception extends Exception {
 

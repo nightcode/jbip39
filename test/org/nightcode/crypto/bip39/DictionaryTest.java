@@ -12,17 +12,17 @@
  * the License.
  */
 
-package org.nightcode.bip39;
+package org.nightcode.crypto.bip39;
 
-import org.nightcode.bip39.dictionary.ChineseSimplifiedDictionary;
-import org.nightcode.bip39.dictionary.ChineseTraditionalDictionary;
-import org.nightcode.bip39.dictionary.Dictionary;
-import org.nightcode.bip39.dictionary.EnglishDictionary;
-import org.nightcode.bip39.dictionary.FrenchDictionary;
-import org.nightcode.bip39.dictionary.ItalianDictionary;
-import org.nightcode.bip39.dictionary.JapaneseDictionary;
-import org.nightcode.bip39.dictionary.KoreanDictionary;
-import org.nightcode.bip39.dictionary.SpanishDictionary;
+import org.nightcode.crypto.bip39.dictionary.ChineseSimplifiedDictionary;
+import org.nightcode.crypto.bip39.dictionary.ChineseTraditionalDictionary;
+import org.nightcode.crypto.bip39.dictionary.Dictionary;
+import org.nightcode.crypto.bip39.dictionary.EnglishDictionary;
+import org.nightcode.crypto.bip39.dictionary.FrenchDictionary;
+import org.nightcode.crypto.bip39.dictionary.ItalianDictionary;
+import org.nightcode.crypto.bip39.dictionary.JapaneseDictionary;
+import org.nightcode.crypto.bip39.dictionary.KoreanDictionary;
+import org.nightcode.crypto.bip39.dictionary.SpanishDictionary;
 
 import org.junit.Assert;
 import org.junit.Test;

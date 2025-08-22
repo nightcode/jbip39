@@ -12,7 +12,9 @@
  * the License.
  */
 
-package org.nightcode.bip39;
+package org.nightcode.crypto.bip39;
+
+import org.nightcode.crypto.bip39.EntropyDesc;
 
 import org.junit.Assert;
 import org.junit.Test;

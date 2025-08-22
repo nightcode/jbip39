@@ -12,7 +12,7 @@
  * the License.
  */
 
-package org.nightcode.bip39.dictionary;
+package org.nightcode.crypto.bip39.dictionary;
 
 import java.util.Arrays;
 
@@ -47,8 +47,8 @@ abstract class AbstractDictionary implements Dictionary {
 
   @Override public int getIndex(String word) {
     int i = (word.hashCode() * MAGIC) >>> shift;
-    String k;
-    while (!word.equals(k = getWord(indexes[i]))) {
+    String k = getWord(indexes[i]);
+    while (!word.equals(k)) {
       if (k == null) {
         return -1;
       }
@@ -56,6 +56,7 @@ abstract class AbstractDictionary implements Dictionary {
         i = indexes.length;
       }
       i--;
+      k = getWord(indexes[i]);
     }
     return indexes[i];
   }

@@ -2,7 +2,6 @@
 <!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 
 <module name="Checker">
-
   <module name="SuppressionFilter">
     <property name="file" value="checkstyle-suppressions.xml" />
   </module>
@@ -23,6 +22,10 @@
 
   <module name="JavadocPackage" />
 
+  <module name="LineLength">
+    <property name="max" value="140" />
+  </module>
+
   <module name="TreeWalker">
     <!-- Block Checks -->
     <module name="AvoidNestedBlocks" />
@@ -41,6 +44,7 @@
     <module name="EqualsAvoidNull" />
     <module name="EqualsHashCode" />
     <module name="IllegalInstantiation" />
+    <module name="InnerAssignment" />
     <module name="MissingSwitchDefault" />
     <module name="SimplifyBooleanExpression" />
     <module name="SimplifyBooleanReturn" />
@@ -70,9 +74,6 @@
     <module name="TypeName" />
 
     <!-- Size Violations -->
-    <module name="LineLength">
-      <property name="max" value="120" />
-    </module>
     <module name="MethodLength" />
     <module name="ParameterNumber">
       <property name="max" value="8" />

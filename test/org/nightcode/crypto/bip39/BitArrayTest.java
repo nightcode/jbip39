@@ -12,7 +12,9 @@
  * the License.
  */
 
-package org.nightcode.bip39;
+package org.nightcode.crypto.bip39;
+
+import org.nightcode.crypto.bip39.BitArray;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -46,7 +48,7 @@ public class BitArrayTest {
   }
 
   @Test public void testShiftLeft() {
-    byte[] array = toByteArray("0102030401");
+    byte[]   array    = toByteArray("0102030401");
     BitArray bitArray = new BitArray(array);
 
     checkShiftLeft(0, bitArray, "0102030401");

@@ -12,7 +12,7 @@
  * the License.
  */
 
-package org.nightcode.bip39;
+package org.nightcode.crypto.bip39;
 
 import java.util.Arrays;
 
@@ -20,19 +20,19 @@ class BitArray {
 
   static final BitArray ZERO = new BitArray(new byte[0]);
 
-  private int[] bits;
-  private int size;
+  private final int[] bits;
+  private final int   size;
 
   BitArray(byte[] src) {
-    int nBytes = src.length;
+    int nBytes      = src.length;
     int offsetBytes = 0;
     for (; offsetBytes < nBytes && src[offsetBytes] == 0;) {
       offsetBytes++;
     }
 
-    int nInts = (((nBytes - offsetBytes) + 3) & ~3) >>> 2;
+    int   nInts  = (((nBytes - offsetBytes) + 3) & ~3) >>> 2;
     int[] buffer = new int[nInts];
-    int b = nBytes - 1;
+    int   b      = nBytes - 1;
     for (int i = nInts - 1; i >= 0; i--) {
       buffer[i] = src[b--] & 0xFF;
       int bitsToCopy = Math.min(24, ((b - offsetBytes) + 1) << 3);
@@ -85,14 +85,14 @@ class BitArray {
       throw new IllegalArgumentException("invalid length value [" + length + "], must be more then 0 and less then 32");
     }
 
-    int intMask = ~(0xFFFFFFFF << length);
-    int nBits = bitLength & 0x1F;
+    int intMask   = ~(0xFFFFFFFF << length);
+    int nBits     = bitLength & 0x1F;
     int bitOffset = (nBits == 0) ? offset : offset + 32 - nBits;
 
     int first = bitOffset >>> 5;
-    int last = (bitOffset + length - 1) >>> 5;
+    int last  = (bitOffset + length - 1) >>> 5;
 
-    int leftShift = (bitOffset & 0x1F) - 32 + length;
+    int leftShift  = (bitOffset & 0x1F) - 32 + length;
     int rightShift = 32 - ((bitOffset + length) & 0x1F);
 
     return ((bits[first] << leftShift) | (bits[last] >>> rightShift)) & intMask;
@@ -102,21 +102,21 @@ class BitArray {
     if (size == 0) {
       return ZERO;
     }
-    int nBits = shift & 0x1F;
-    int nInts = shift >>> 5;
+    int   nBits = shift & 0x1F;
+    int   nInts = shift >>> 5;
     int[] buffer;
 
     if (nBits == 0) {
       buffer = new int[size + nInts];
       System.arraycopy(bits, 0, buffer, 0, size);
     } else {
-      int i = 0;
-      int diff = 32 - nBits;
+      int i        = 0;
+      int diff     = 32 - nBits;
       int mostLeft = bits[0] >>> diff;
       if (mostLeft == 0) {
         buffer = new int[size + nInts];
       } else {
-        buffer = new int[size + nInts + 1];
+        buffer      = new int[size + nInts + 1];
         buffer[i++] = mostLeft;
       }
       int j;
@@ -133,8 +133,8 @@ class BitArray {
     if (size == 0) {
       return ZERO;
     }
-    int nBits = shift & 0x1F;
-    int nInts = shift >>> 5;
+    int   nBits = shift & 0x1F;
+    int   nInts = shift >>> 5;
     int[] buffer;
 
     if (nInts >= size) {
@@ -145,13 +145,13 @@ class BitArray {
       buffer = new int[size - nInts];
       System.arraycopy(bits, 0, buffer, 0, buffer.length);
     } else {
-      int i = 0;
-      int diff = 32 - nBits;
+      int i        = 0;
+      int diff     = 32 - nBits;
       int mostLeft = bits[0] >>> nBits;
       if (mostLeft == 0) {
         buffer = new int[size - nInts - 1];
       } else {
-        buffer = new int[size - nInts];
+        buffer      = new int[size - nInts];
         buffer[i++] = mostLeft;
       }
       for (int j = 0; j < size - 1; j++) {
@@ -163,11 +163,11 @@ class BitArray {
   }
 
   byte[] toByteArray() {
-    int nBits = bitLength();
-    int nBytes = ((nBits & 0x7) > 0) ? (nBits >>> 3) + 1 : (nBits >>> 3);
+    int    nBits  = bitLength();
+    int    nBytes = ((nBits & 0x7) > 0) ? (nBits >>> 3) + 1 : (nBits >>> 3);
     byte[] buffer = new byte[nBytes];
-    int diff = nBytes & 0x3;
-    int offset = (diff > 0) ? 1 : 0;
+    int    diff   = nBytes & 0x3;
+    int    offset = (diff > 0) ? 1 : 0;
 
     for (int i = 0; i < diff; i++) {
       buffer[i] = (byte) ((bits[0] >>> 8 * (diff - 1 - i)) & 0xFF);

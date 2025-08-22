@@ -46,7 +46,7 @@ Wordlists are from the [BIP 0039][2].
 
 
 
-Feedback is welcome. Please don't hesitate to open up a new [github issue]([3]) or simply drop me a line at <dmitry@nightcode.org>.
+Feedback is welcome. Please don't hesitate to open up a new [github issue][3] or simply drop me a line at <dmitry@nightcode.org>.
 
 
  [1]: http://oss.sonatype.org/service/local/artifact/maven/redirect?r=releases&g=org.nightcode&a=jbip39&v=LATEST

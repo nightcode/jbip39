@@ -12,7 +12,7 @@
  * the License.
  */
 
-package org.nightcode.bip39;
+package org.nightcode.crypto.bip39;
 
 import com.google.gson.annotations.SerializedName;
 

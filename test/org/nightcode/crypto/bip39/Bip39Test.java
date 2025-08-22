@@ -12,10 +12,10 @@
  * the License.
  */
 
-package org.nightcode.bip39;
+package org.nightcode.crypto.bip39;
 
-import org.nightcode.bip39.dictionary.EnglishDictionary;
-import org.nightcode.bip39.dictionary.JapaneseDictionary;
+import org.nightcode.crypto.bip39.dictionary.EnglishDictionary;
+import org.nightcode.crypto.bip39.dictionary.JapaneseDictionary;
 
 import com.google.gson.Gson;
 

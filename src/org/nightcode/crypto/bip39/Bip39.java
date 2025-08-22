@@ -12,9 +12,7 @@
  * the License.
  */
 
-package org.nightcode.bip39;
-
-import org.nightcode.bip39.dictionary.Dictionary;
+package org.nightcode.crypto.bip39;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -25,9 +23,10 @@ import java.text.Normalizer;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
-
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+
+import org.nightcode.crypto.bip39.dictionary.Dictionary;
 
 public class Bip39 {
 
@@ -77,7 +76,7 @@ public class Bip39 {
 
     int numberOfWords = words.length;
     if (numberOfWords % 3 != 0 || numberOfWords < 12 || numberOfWords > 24) {
-      throw new Bip39Exception("invalid number of words [%s] in mnemonic '%s'", numberOfWords, mnemonic);
+      throw new Bip39Exception("invalid number of words [%s] in mnemonic '%s'", Integer.toString(numberOfWords), mnemonic);
     }
 
     EntropyDesc entropyDesc = EntropyDesc.fromNumberOfWords(numberOfWords);

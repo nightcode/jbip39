@@ -12,7 +12,7 @@
  * the License.
  */
 
-package org.nightcode.bip39.dictionary;
+package org.nightcode.crypto.bip39.dictionary;
 
 public interface Dictionary {
 

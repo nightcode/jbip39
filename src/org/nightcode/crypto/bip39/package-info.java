@@ -12,4 +12,8 @@
  * limitations under the License.
  */
 
-package org.nightcode.bip39.dictionary;
+/**
+ * BIP 39 classes.
+ */
+
+package org.nightcode.crypto.bip39;
